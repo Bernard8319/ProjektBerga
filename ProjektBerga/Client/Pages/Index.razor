@@ -1,0 +1,39 @@
+﻿@page "/"
+@page "/{categoryurl}"
+@inject ICategoryService CategoryService;
+@inject IProductService ProductService;
+
+@if (category != null)
+{
+    <h1>Dobrodošli u @category.Name sekciju!</h1>
+    <ProductList></ProductList>
+}
+else
+{
+    <h1 class="naslov">Dobrodošli!</h1>
+}
+
+
+<ProductList></ProductList>
+
+@code{
+    [Parameter]
+    public string CategoryUrl { get; set; }
+
+    private Category category = null;
+
+    protected override  async Task OnParametersSetAsync()
+    {
+        await ProductService.LoadProducts(CategoryUrl);
+
+       await ProductService.LoadProducts(CategoryUrl);
+        if (CategoryUrl != null)
+        {
+            category = CategoryService.Categories.FirstOrDefault(c => c.Url.ToLower().Equals(CategoryUrl.ToLower()));
+        }
+        else
+        {
+            category = null;
+        }
+    }
+}
