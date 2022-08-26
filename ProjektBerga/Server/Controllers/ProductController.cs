@@ -30,7 +30,7 @@ namespace ProjektBerga.Server.Controllers
             return Ok(await productService.GetProductsByCategory(categoryUrl));
 
         }
-        [HttpGet("GetProduct/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id )
         {
             return Ok(await productService.GetProduct(id));

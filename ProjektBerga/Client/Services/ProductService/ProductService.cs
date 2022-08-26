@@ -24,11 +24,11 @@ namespace ProjektBerga.Client.Services.ProductService
         {
             if( categoryUrl == null)
             {
-                Products = await http.GetFromJsonAsync<List<Product>>($" api/Product");
+                Products = await http.GetFromJsonAsync<List<Product>>($"api/Product");
             }
             else
             {
-                Products = await http.GetFromJsonAsync<List<Product>>($" api/Product/Category/{categoryUrl}");
+                Products = await http.GetFromJsonAsync<List<Product>>($"api/Product/Category/{categoryUrl}");
             }
             
             OnChange.Invoke();
@@ -36,7 +36,7 @@ namespace ProjektBerga.Client.Services.ProductService
 
         public async Task<Product> GetProduct(int id)
         {
-            return await http.GetFromJsonAsync<Product>($" api/Product/ {id}");
+            return await http.GetFromJsonAsync<Product>($"api/Product/{id}");
         }
     }
 }
