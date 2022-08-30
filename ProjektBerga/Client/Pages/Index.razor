@@ -11,10 +11,11 @@
 else
 {
     <h1 class="naslov">Dobrodošli!</h1>
+    <ProductList></ProductList>
 }
 
 
-<ProductList></ProductList>
+
 
 @code{
     [Parameter]
@@ -22,11 +23,11 @@ else
 
     private Category category = null;
 
-    protected override  async Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync()
     {
         await ProductService.LoadProducts(CategoryUrl);
 
-       await ProductService.LoadProducts(CategoryUrl);
+        await ProductService.LoadProducts(CategoryUrl);
         if (CategoryUrl != null)
         {
             category = CategoryService.Categories.FirstOrDefault(c => c.Url.ToLower().Equals(CategoryUrl.ToLower()));
